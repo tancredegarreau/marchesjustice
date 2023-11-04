@@ -79,6 +79,9 @@ export const Header = () => {
         image={logo}
         className="mx-auto md:mt-16 mt-8 mb-24 w-auto md:h-96 h-80"
       />
+
+{/*
+
       <Video
         ref={video}
         controlsList="nodownload"
@@ -92,7 +95,7 @@ export const Header = () => {
         muted={true}
       >
         <source src="https://firebasestorage.googleapis.com/v0/b/marchesjustice.appspot.com/o/23%20SEPTEMBRE%202023%20_%20REPRENONS%20LA%20RUE%2C%20TOUS%20ENSEMBLE%20CONTRE%20MACRON%20ET%20SON%20MONDE.mp4?alt=media" type="video/mp4" />
-      </Video>
+      </Video>   */}
       <TextContainer
         ref={textContainerRef}
         dangerouslySetInnerHTML={{

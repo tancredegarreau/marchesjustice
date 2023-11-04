@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
 import { rotate } from "./rotate";
 import { Loading as LoadingIcon } from "../assets/images/Loading";
-import { BOWLBY } from "../constant/Fonts";
+import { BARLOW, BOWLBY, NEWSPIRIT } from "../constant/Fonts";
 import { PRIMARY, TEXT_DARK } from "../constant/Colors";
 
 const Loading = styled(LoadingIcon)`

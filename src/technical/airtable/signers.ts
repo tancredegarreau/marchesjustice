@@ -16,6 +16,7 @@ function fetchSignersView() {
 export function fetchSigners() {
   return new Promise<Signer[]>((resolve, reject) => {
     const signers: Signer[] = [];
+    /*
     fetchSignersView().eachPage(
       (records, fetchNextPage) => {
         signers.push(
@@ -35,6 +36,6 @@ export function fetchSigners() {
           resolve(signers);
         }
       }
-    );
+    );*/
   });
 }

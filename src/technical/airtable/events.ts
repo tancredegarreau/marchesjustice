@@ -13,8 +13,8 @@ export interface EventMap {
 }
 
 function fetchEventsView() {
-  return Airtable.base("apprRq5jn6atYUvi2")("tblsLmTYS3EfEOqwm").select({
-    view: "viwSVI5iKwD1VFpZI",
+  return Airtable.base("app2y9SzfXwztBVIR")("tbl5yXEihzgrWRFLM").select({
+    view: "viwF2xMzaQitJaqWY",
   });
 }
 

@@ -1,5 +1,5 @@
 export const BLACK = "#000000";
-export const RED = "#ED340B";
+export const RED = "#DE4140";
 export const DARK_PURPLE = "#2E0427";
 export const PURPLE = "#9674E2";
 export const GREEN = "#4DD683";
