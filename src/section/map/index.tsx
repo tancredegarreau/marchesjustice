@@ -11,6 +11,7 @@ import { TitleContainer } from "../../components/TitleContainer";
 import { useExternal } from "../../technical/external-provider/content";
 import { SafeMountMapComponent } from "./map-component";
 import { MarkerData } from "./map-component/MapComponent";
+import { EventForm } from './Form';
 
 const Section = styled.section`
   margin-bottom: 124px;
@@ -136,21 +137,14 @@ export const Map = () => {
         document={texts[TextKey.MAP_HEADER].document}
         replaces={countReplace}
       />
-      {/*
         <EventForm
           className="block md:hidden"
           onSubmitPostalCode={handlePostalCode}
         />
-      */}
       <Container className="mt-0 --md:mt-96">
-        {/*
           <FormContainer className="hidden md:block">
             <EventForm onSubmitPostalCode={handlePostalCode} />
           </FormContainer>
-        <iframe width="100%" height="600px" frameBorder="0"
-                src="//umap.openstreetmap.fr/fr/map/carte-des-mobilisations_936980#5/46.698481/2.549047?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&allowEdit=false&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=undefined&captionBar=false&captionMenus=true"></iframe>
-
-        */}
         <SafeMountMapComponent markers={markers} ref={mapRef} />
 
         <CTAContainer>
