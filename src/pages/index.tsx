@@ -52,7 +52,7 @@ const Avril9 = () => {
             name: "viewport",
             content: "width=device-width, initial-scale=0.7",
           },
-          { property: "og:url", content: "https://marche9avril.fr/" },
+          { property: "og:url", content: "https://actionpalestine.fr/" },
           { property: "og:type", content: "website" },
           { property: "og:title", content: seo.title },
           {
