@@ -13,9 +13,9 @@ import { documentToPlainTextString } from "@contentful/rich-text-plain-text-rend
 import { TEXT_DARK } from "../../constant/Colors";
 
 const Container = styled.div`
-  max-width: 1024px;
+  max-width: 800px;
   margin: auto;
-  color: ${TEXT_DARK};
+  color: BLACK;
 `;
 
 const HTMLForm = styled.form`
@@ -31,7 +31,7 @@ const HiddenInput = styled.input`
 const InputContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 24px;
+  margin-top: 8px;
 `;
 
 const Label = styled(Input.Label)`
@@ -39,7 +39,7 @@ const Label = styled(Input.Label)`
 `;
 
 const Button = styled(BaseButton)`
-  margin-top: 24px;
+  margin-top: 8px;
 `;
 
 const SuccessMessage = styled.p<{ visible: boolean }>`

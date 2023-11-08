@@ -28,7 +28,7 @@ export const Footer = () => {
   return (
     <HTMLFooter className="text-center sm:text-left">
       <Text>
-        Ce site est à l'initiative du cadre unitaire autour de l'appel à la marche du 23 septembre
+        Ce site est une initiaive citoyenne.
       </Text>
       {/*
         <Link to="/legal">

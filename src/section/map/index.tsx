@@ -14,8 +14,10 @@ import { MarkerData } from "./map-component/MapComponent";
 import { EventForm } from './Form';
 
 const Section = styled.section`
-  margin-bottom: 124px;
+margin-top: 200px;  
+margin-bottom: 124px;
 `;
+
 
 const Container = styled.div`
   position: relative;
@@ -45,6 +47,7 @@ const CTAContainer = styled.div`
   right: 0;
   padding: 0 46px;
   display: flex;
+
 `;
 
 interface APIAddressData {

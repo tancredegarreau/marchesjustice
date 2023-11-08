@@ -77,7 +77,7 @@ export const Header = () => {
     <Container>
       <ContentfulImage
         image={logo}
-        className="mx-auto md:mt-16 mt-8 mb-24 w-auto md:h-96 h-80"
+        className="mx-auto md:mt-10 mt-5 mb-10 w-auto md:h-96 h-80"
       />
 
 {/*
