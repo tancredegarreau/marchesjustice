@@ -28,7 +28,7 @@ export const Footer = () => {
   return (
     <HTMLFooter className="text-center sm:text-left">
       <Text>
-        Ce site est une initiaive citoyenne.
+        Ce site est une initiative citoyenne.
       </Text>
       {/*
         <Link to="/legal">
