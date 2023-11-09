@@ -31,7 +31,7 @@ const HiddenInput = styled.input`
 const InputContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 8px;
+  margin-top: 24px;
 `;
 
 const Label = styled(Input.Label)`
@@ -39,7 +39,7 @@ const Label = styled(Input.Label)`
 `;
 
 const Button = styled(BaseButton)`
-  margin-top: 8px;
+  margin-top: 24px;
 `;
 
 const SuccessMessage = styled.p<{ visible: boolean }>`

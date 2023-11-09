@@ -14,10 +14,8 @@ import { MarkerData } from "./map-component/MapComponent";
 import { EventForm } from './Form';
 
 const Section = styled.section`
-margin-top: 200px;  
 margin-bottom: 124px;
 `;
-
 
 const Container = styled.div`
   position: relative;
@@ -144,7 +142,7 @@ export const Map = () => {
           className="block md:hidden"
           onSubmitPostalCode={handlePostalCode}
         />
-      <Container className="mt-0 --md:mt-96">
+      <Container className="mt-0 md:mt-80">
           <FormContainer className="hidden md:block">
             <EventForm onSubmitPostalCode={handlePostalCode} />
           </FormContainer>
