@@ -3,7 +3,7 @@ import { useCallback, useMemo, useRef } from "react";
 import { useContent } from "../../technical/contentful/content";
 import { TextKey } from "../../technical/contentful/text";
 import styled from "styled-components";
-import { Map as LeafletMap } from "react-leaflet";
+import { MapContainer as LeafletMap } from "react-leaflet";
 import { Button } from "../../components/Button";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { Share } from "./Share";
@@ -105,7 +105,7 @@ export const Map = () => {
       })),
     [events]
   );
-  const mapRef = useRef<LeafletMap>(null);
+  const mapRef = useRef<typeof LeafletMap>(null);
   const handlePostalCode = useCallback(async (postalCode: string) => {
     const currentMap = mapRef.current;
     if (!currentMap) {

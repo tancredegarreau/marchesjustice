@@ -1,12 +1,8 @@
+import { IGatsbyImageData } from "gatsby-plugin-image";
+
 export interface Image {
   title: string;
-  fixed?: {
-    srcWebp: string;
-    src: string;
-    tracedSVG?: string;
-    height: number;
-    width: number;
-  };
+  gatsbyImageData?: IGatsbyImageData;
   file: {
     contentType: string;
     url: string;

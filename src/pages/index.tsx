@@ -1,6 +1,5 @@
 import "../custom-types/assets.d";
 import * as React from "react";
-import Helmet from "react-helmet";
 import favicon from "../assets/images/favicon.png";
 import { ContentProvider } from "../technical/contentful/ContentProvider";
 import { useContent } from "../technical/contentful/content";
@@ -31,42 +30,12 @@ const Background = styled.div<{ background: string }>`
 `;
 
 const Avril9 = () => {
-  const { seo, background } = useContent();
+  const { background } = useContent();
 
   return (
     <>
       <GlobalStyles />
       <Background background={background} />
-      <Helmet
-        title={seo.title}
-        link={[{ rel: "icon", href: favicon }]}
-        htmlAttributes={{
-          lang: "fr",
-        }}
-        meta={[
-          {
-            name: "description",
-            content: seo.description,
-          },
-          {
-            name: "viewport",
-            content: "width=device-width, initial-scale=0.7",
-          },
-          { property: "og:url", content: "https://actionpalestine.fr/" },
-          { property: "og:type", content: "website" },
-          { property: "og:title", content: seo.title },
-          {
-            property: "og:description",
-            content: seo.description,
-          },
-          {
-            property: "og:image",
-            content: `https:${seo.image}`,
-          },
-          { property: "og:locale", content: "FR" },
-          { property: "twitter:card", content: "summary_large_image" },
-        ]}
-      />
       <Header />
       <Map />
       {false && <Actions /> // Let's hide actions for now...
@@ -75,6 +44,34 @@ const Avril9 = () => {
     </>
   );
 };
+
+const HeadComponent = () => {
+  const { seo } = useContent();
+
+  return (
+    <>
+      <html lang="fr" />
+      <title>{seo.title}</title>
+      <link rel="icon" href={favicon} />
+      <meta name="description" content={seo.description} />
+      <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7" />
+      <meta property="og:url" content="https://actionpalestine.fr/" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:description" content={seo.description} />
+      <meta property="og:image" content={seo.image} />
+      <meta property="og:locale" content="FR" />
+      <meta property="twitter:card" content="summary_large_image" />
+    </>);
+}
+
+export const Head = () => (
+  <ContentProvider>
+    <ExternalProvider>
+      <HeadComponent />
+    </ExternalProvider>
+  </ContentProvider>
+)
 
 export default () => (
   <ContentProvider>

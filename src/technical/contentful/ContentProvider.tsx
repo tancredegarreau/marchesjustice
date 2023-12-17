@@ -11,9 +11,7 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
           description
           title
           image {
-            fixed {
-              src
-            }
+            gatsbyImageData(layout: FIXED)
           }
         }
       }
@@ -31,12 +29,7 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
       allContentfulLogo(limit: 1) {
         nodes {
           img {
-            fixed(width: 700, height: 560, resizingBehavior: PAD) {
-              srcWebp
-              src
-              height
-              width
-            }
+            gatsbyImageData(layout: FIXED, height: 560, resizingBehavior: PAD)
             file {
               contentType
               url
@@ -61,7 +54,7 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
   const rawData = {
     seo: {
       ...data.allContentfulSeo.nodes[0],
-      image: data.allContentfulSeo.nodes[0].image.fixed.src,
+      image: data.allContentfulSeo.nodes[0].image.gatsbyImageData.images.fallback.src,
     },
     texts: data.allContentfulText.nodes.reduce(
       (acc, node) => ({
@@ -75,7 +68,7 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
     ),
     logo: {
       fields: {
-        fixed: data.allContentfulLogo.nodes[0].img.fixed,
+        gatsbyImageData: data.allContentfulLogo.nodes[0].img.gatsbyImageData,
         title: data.allContentfulLogo.nodes[0].img.title,
         file: data.allContentfulLogo.nodes[0].img.file,
       },

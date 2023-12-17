@@ -15,7 +15,6 @@ module.exports = {
         allowList: ["SEND_IN_BLUE_FORM", "AIRTABLE_API_KEY"],
       },
     },
-    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -30,8 +29,9 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_TOKEN,
       },
     },
-    `gatsby-transformer-sharp`,
+    'gatsby-plugin-image',
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     "gatsby-plugin-typescript",
     "gatsby-plugin-react-leaflet",
     "vraieloiclimat-standalone-page",

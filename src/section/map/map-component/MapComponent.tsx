@@ -1,11 +1,11 @@
 import * as React from "react";
 import { forwardRef, useState } from "react";
 import styled from "styled-components";
-import { Map as LeafletMap, Marker, Popup as PopupLeaflet, TileLayer, } from "react-leaflet";
+import { MapContainer as LeafletMap, Marker, Popup as PopupLeaflet, TileLayer, } from "react-leaflet";
 import "./style.css";
 import { BOWLBY, KLIMA } from "../../../constant/Fonts";
 import { Icon } from "leaflet";
-import MarkerClusterGroup from "react-leaflet-markercluster";
+import MarkerClusterGroup from "@changey/react-leaflet-markercluster";
 import moment from 'moment';
 import 'moment/locale/fr'
 
@@ -68,8 +68,8 @@ interface Cluster {
 
 const createClusterCustomIcon = (cluster: Cluster) =>
   new Icon({
-    iconUrl: require("../../../assets/images/marker_multiple3.svg"),
-    iconRetinaUrl: require("../../../assets/images/marker_multiple3.svg"),
+    iconUrl: require("../../../assets/images/marker_multiple3.svg").default,
+    iconRetinaUrl: require("../../../assets/images/marker_multiple3.svg").default,
     iconSize: [40, 50],
     iconAnchor: [20, 50],
   });
@@ -88,12 +88,12 @@ export interface Props {
   markers: MarkerData[];
 }
 
-export const MapComponent = forwardRef<LeafletMap, Props>(
+export const MapComponent = forwardRef<typeof LeafletMap, Props>(
   ({ markers  }, ref) => {
     const [markerIcon] = useState(
       new Icon({
-        iconUrl: require("../../../assets/images/marker.svg"),
-        iconRetinaUrl: require("../../../assets/images/marker.svg"),
+        iconUrl: require("../../../assets/images/marker.svg").default,
+        iconRetinaUrl: require("../../../assets/images/marker.svg").default,
         iconSize: [40, 50],
         iconAnchor: [20, 50],
         popupAnchor: [0, -40],

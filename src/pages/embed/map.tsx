@@ -5,7 +5,6 @@ import { MarkerData } from "../../section/map/map-component/MapComponent";
 import { SafeMountMapComponent } from "../../section/map/map-component";
 import { ContentProvider } from "../../technical/contentful/ContentProvider";
 import { ExternalProvider } from "../../technical/external-provider/ContentProvider";
-import Helmet from "react-helmet";
 import { useContent } from "../../technical/contentful/content";
 import favicon from "../../assets/images/favicon.png";
 import styled from "styled-components";
@@ -18,7 +17,6 @@ const Container = styled.div`
 `;
 
 const EmbedMap = () => {
-  const { seo } = useContent();
   const { events } = useExternal();
   const markers = useMemo<MarkerData[]>(
     () =>
@@ -35,51 +33,39 @@ const EmbedMap = () => {
   );
 
   return (
-    <>
-      <Helmet
-        title={seo.title}
-        link={[{ rel: "icon", href: favicon }]}
-        htmlAttributes={{
-          lang: "fr",
-        }}
-        meta={[
-          {
-            name: "robots",
-            content: "noindex",
-          },
-          {
-            name: "googlebot",
-            content: "noindex",
-          },
-          {
-            name: "description",
-            content: seo.description,
-          },
-          {
-            name: "viewport",
-            content: "width=device-width, initial-scale=0.7",
-          },
-          { property: "og:url", content: "https://actionpalestine.fr" },
-          { property: "og:type", content: "website" },
-          { property: "og:title", content: seo.title },
-          {
-            property: "og:description",
-            content: seo.description,
-          },
-          {
-            property: "og:image",
-            content: `https:${seo.image}`,
-          },
-          { property: "og:locale", content: "FR" },
-          { property: "twitter:card", content: "summary_large_image" },
-        ]}
-      />
-      <Container>
-        <SafeMountMapComponent markers={markers} />
-      </Container>
-    </>
+    <Container>
+      <SafeMountMapComponent markers={markers} />
+    </Container>
   );
 };
+
+const HeadComponent = () => {
+  const { seo } = useContent();
+
+  return (
+    <>
+      <html lang="fr" />
+      <title>{seo.title}</title>
+      <link rel="icon" href={favicon} />
+      <meta name="description" content={seo.description} />
+      <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7" />
+      <meta property="og:url" content="https://actionpalestine.fr" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:description" content={seo.description} />
+      <meta property="og:image" content={seo.image} />
+      <meta property="og:locale" content="FR" />
+      <meta property="twitter:card" content="summary_large_image" />
+    </>);
+}
+
+export const Head = () => (
+  <ContentProvider>
+    <ExternalProvider>
+      <HeadComponent />
+    </ExternalProvider>
+  </ContentProvider>
+)
 
 export default () => (
   <ContentProvider>

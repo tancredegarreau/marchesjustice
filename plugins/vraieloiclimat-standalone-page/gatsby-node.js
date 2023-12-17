@@ -10,12 +10,7 @@ exports.createPages = ({ graphql, actions }) => {
       allContentfulPage(filter: { enabled: { eq: true } }) {
         nodes {
           logo {
-            fixed(width: 500, height: 400, resizingBehavior: PAD) {
-              srcWebp
-              src
-              height
-              width
-            }
+            gatsbyImageData(layout: FIXED, height: 400, resizingBehavior: PAD)
             file {
               contentType
               url
@@ -32,9 +27,7 @@ exports.createPages = ({ graphql, actions }) => {
           bottomActionText
           bottomActionLink
           image {
-            fixed {
-              src
-            }
+            gatsbyImageData(layout: FIXED)
           }
         }
       }
@@ -45,9 +38,7 @@ exports.createPages = ({ graphql, actions }) => {
           title
           description
           image {
-            fixed {
-              src
-            }
+            gatsbyImageData(layout: FIXED)
           }
         }
       }
