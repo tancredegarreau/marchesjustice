@@ -80,7 +80,7 @@ export const MapDrawer: FC<Props> = ({ data, ...props }) => {
             <Description>{data.description}</Description>
           </Section>
         )}
-        {!objectEmpty(data.socials) && <Socials socials={data.socials} />}
+        <Socials socials={data.socials} />
       </Container>
     </Drawer>
   );
