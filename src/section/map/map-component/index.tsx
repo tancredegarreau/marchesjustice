@@ -11,11 +11,17 @@ const MapPlaceholder = styled.img.attrs({ src: mapPlaceholder })`
   object-fit: cover;
 `;
 
-export const SafeMountMapComponent = forwardRef<typeof MapContainer, Props>((props, ref) => {
-  const [isMounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, [setMounted]);
+export const SafeMountMapComponent = forwardRef<typeof MapContainer, Props>(
+  (props, ref) => {
+    const [isMounted, setMounted] = useState(false);
+    useEffect(() => {
+      setMounted(true);
+    }, [setMounted]);
 
-  return isMounted ? <MapComponent ref={ref} {...props} /> : <MapPlaceholder />;
-});
+    return isMounted ? (
+      <MapComponent ref={ref} {...props} />
+    ) : (
+      <MapPlaceholder />
+    );
+  }
+);

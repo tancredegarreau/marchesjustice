@@ -1,7 +1,5 @@
 import { useExternal } from "../../technical/external-provider/content";
 import * as React from "react";
-import { useMemo } from "react";
-import { MarkerData } from "../../section/map/map-component/MapComponent";
 import { SafeMountMapComponent } from "../../section/map/map-component";
 import { ContentProvider } from "../../technical/contentful/ContentProvider";
 import { ExternalProvider } from "../../technical/external-provider/ContentProvider";
@@ -17,24 +15,16 @@ const Container = styled.div`
 `;
 
 const EmbedMap = () => {
-  const { events } = useExternal();
-  const markers = useMemo<MarkerData[]>(
-    () =>
-      events.map(event => ({
-        city: event.city,
-        date: event.date,
-        where: event.where,
-        when: event.when,
-        subject: event.subject,
-        href: event.URL,
-        position: event.position,
-      })),
-    [events]
-  );
+  const { filters, events, activeFilter, setActiveFilter } = useExternal();
 
   return (
     <Container>
-      <SafeMountMapComponent markers={markers} />
+      <SafeMountMapComponent
+        events={events[activeFilter] ?? []}
+        filters={filters}
+        activeFilter={activeFilter}
+        setActiveFilter={setActiveFilter}
+      />
     </Container>
   );
 };
@@ -48,7 +38,10 @@ const HeadComponent = () => {
       <title>{seo.title}</title>
       <link rel="icon" href={favicon} />
       <meta name="description" content={seo.description} />
-      <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
       <meta property="og:url" content="https://actionpalestine.fr" />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={seo.title} />
@@ -56,8 +49,9 @@ const HeadComponent = () => {
       <meta property="og:image" content={seo.image} />
       <meta property="og:locale" content="FR" />
       <meta property="twitter:card" content="summary_large_image" />
-    </>);
-}
+    </>
+  );
+};
 
 export const Head = () => (
   <ContentProvider>
@@ -65,7 +59,7 @@ export const Head = () => (
       <HeadComponent />
     </ExternalProvider>
   </ContentProvider>
-)
+);
 
 export default () => (
   <ContentProvider>

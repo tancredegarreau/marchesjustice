@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
 import { rotate } from "./rotate";
 import { Loading as LoadingIcon } from "../assets/images/Loading";
-import { BARLOW, BOWLBY, NEWSPIRIT } from "../constant/Fonts";
+import { BOWLBY } from "../constant/Fonts";
 import { PRIMARY, TEXT_DARK } from "../constant/Colors";
 
 const Loading = styled(LoadingIcon)`
@@ -33,7 +33,7 @@ const BaseButton = styled.button<ButtonBaseProps>`
   font-size: 18px;
   height: 60px;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 8px;
   padding: 0 24px;
   min-width: 16rem;
   font-family: ${BOWLBY};
@@ -41,7 +41,7 @@ const BaseButton = styled.button<ButtonBaseProps>`
 
   ${({ shadow }: ButtonBaseProps) =>
     shadow && `box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);`}
-    :focus {
+  :focus {
     border: none;
     outline: none;
   }

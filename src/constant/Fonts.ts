@@ -1,8 +1,8 @@
 export const BARLOW = "Barlow";
 export const MONUMENT = "Monument";
 
-export const BOWLBY = 'Bowlby';
+export const BOWLBY = "Bowlby";
 
-export const KLIMA = 'Klima';
+export const KLIMA = "Klima";
 
-export const NEWSPIRIT = 'NewSpirit';
+export const NEWSPIRIT = "NewSpirit";

@@ -114,7 +114,7 @@ export const EventForm = ({ onSubmitPostalCode, className }: Props) => {
             },
           })}
         >
-          {formProps => (
+          {(formProps) => (
             <HTMLForm ref={formRef} onSubmit={formProps.handleSubmit}>
               <Field name="EMAIL" type="text">
                 {({ input, meta }) => {

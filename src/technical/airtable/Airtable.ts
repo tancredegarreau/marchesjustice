@@ -1,12 +1,8 @@
-import Airtable from 'airtable';
-
-const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
-if (!AIRTABLE_API_KEY) {
-  throw new Error("Missing env AIRTABLE_API_KEY");
-}
+import * as Airtable from "airtable";
+import { AIRTABLE_API_KEY } from "./config";
 
 Airtable.configure({
-  apiKey: AIRTABLE_API_KEY
+  apiKey: AIRTABLE_API_KEY,
 });
 
-export { Airtable }
+export { Airtable };

@@ -41,11 +41,10 @@ interface Action {
 }
 
 const ItemBackground = styled.div<{ backgroundImg: string }>`
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 41.15%, #000000 100%), url('${({
-    backgroundImg,
-  }) => backgroundImg}');
-    background-size: cover;
-    background-position: center;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 41.15%, #000000 100%),
+    url("${({ backgroundImg }) => backgroundImg}");
+  background-size: cover;
+  background-position: center;
   width: 380px;
   max-width: 90vw;
   margin: 0 10px;

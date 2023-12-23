@@ -67,7 +67,7 @@ export const Header = () => {
 
   useEffect(() => {
     if (textContainerRef.current) {
-      textContainerRef.current.querySelectorAll("a").forEach(element => {
+      textContainerRef.current.querySelectorAll("a").forEach((element) => {
         element.target = "_blank";
       });
     }
@@ -78,9 +78,10 @@ export const Header = () => {
       <ContentfulImage
         image={logo}
         className="mx-auto md:mt-10 mt-5 mb-10 w-auto md:h-60 h-72"
+        objectFit="contain"
       />
 
-{/*
+      {/*
 
       <Video
         ref={video}

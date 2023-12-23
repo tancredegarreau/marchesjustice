@@ -2,7 +2,6 @@ import { Entry } from "../technical/contentful/entry";
 import { StandaloneEmbed } from "../technical/contentful/standalone";
 import { useContent } from "../technical/contentful/content";
 import * as React from "react";
-import Helmet from "react-helmet";
 import favicon from "../assets/images/favicon.png";
 import { ContentProvider } from "../technical/contentful/ContentProvider";
 import { ExternalProvider } from "../technical/external-provider/ContentProvider";
@@ -19,49 +18,6 @@ interface ContentProps {
   page: Entry<StandaloneEmbed>;
 }
 
-const PageContent = ({ page }: ContentProps) => {
-  const { seo } = useContent();
-
-  return (
-    <>
-      <Helmet
-        title={page.fields.title || seo.title}
-        link={[{ rel: "icon", href: favicon }]}
-        htmlAttributes={{
-          lang: "fr",
-        }}
-        meta={[
-          {
-            name: "description",
-            content: page.fields.description || seo.description,
-          },
-          {
-            name: "viewport",
-            content: "width=device-width, initial-scale=0.7",
-          },
-          {
-            property: "og:url",
-            content: `https://actionpalestine.fr/${page.fields.path}`,
-          },
-          { property: "og:type", content: "website" },
-          { property: "og:title", content: page.fields.title || seo.title },
-          {
-            property: "og:description",
-            content: page.fields.description || seo.description,
-          },
-          {
-            property: "og:image",
-            content: `https:${page.fields.image || seo.image}`,
-          },
-          { property: "og:locale", content: "FR" },
-          { property: "twitter:card", content: "summary_large_image" },
-        ]}
-      />
-      <FullFrame src={page.fields.embedUrl} />
-    </>
-  );
-};
-
 interface Props {
   pageContext: ContentProps;
 }
@@ -69,7 +25,48 @@ interface Props {
 export default ({ pageContext: { page } }: Props) => (
   <ContentProvider>
     <ExternalProvider>
-      <PageContent page={page} />
+      <FullFrame src={page.fields.embedUrl} />
+    </ExternalProvider>
+  </ContentProvider>
+);
+
+const HeadComponent = ({ page }: ContentProps) => {
+  const { seo } = useContent();
+
+  return (
+    <>
+      <html lang="fr" />
+      <title>{page.fields.title || seo.title}</title>
+      <link rel="icon" href={favicon} />
+      <meta
+        name="description"
+        content={page.fields.description || seo.description}
+      />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <meta
+        property="og:url"
+        content={`https://actionpalestine.fr/${page.fields.path}`}
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={page.fields.title || seo.title} />
+      <meta
+        property="og:description"
+        content={page.fields.description || seo.description}
+      />
+      <meta property="og:image" content={page.fields.image || seo.image} />
+      <meta property="og:locale" content="FR" />
+      <meta property="twitter:card" content="summary_large_image" />
+    </>
+  );
+};
+
+export const Head = ({ pageContext: { page } }: Props) => (
+  <ContentProvider>
+    <ExternalProvider>
+      <HeadComponent page={page} />
     </ExternalProvider>
   </ContentProvider>
 );

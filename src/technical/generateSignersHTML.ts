@@ -5,7 +5,7 @@ export function generateSignersHTML(signers: ExternalData["signers"]) {
     <ul class="flex flex-col" style="list-style: none; padding-inline-start: 0;">
         ${signers
           .map(
-            signer =>
+            (signer) =>
               `<li>${signer.name}${
                 signer.comment ? `<i>${signer.comment}</i>` : ""
               }</li>`

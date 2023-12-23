@@ -23,7 +23,7 @@ export function canSubmit(
 
   return (
     !formProps.errors[FORM_ERROR] &&
-    erroredFields.every(erroredField => !touched[erroredField]) &&
+    erroredFields.every((erroredField) => !touched[erroredField]) &&
     (formProps.dirtySinceLastSubmit || !formProps.hasSubmitErrors)
   );
 }

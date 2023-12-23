@@ -43,12 +43,12 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
     }
-  `).then(result => {
+  `).then((result) => {
     if (result.errors) {
       throw result.errors;
     }
 
-    const pages = result.data.allContentfulPage.nodes.map(node => ({
+    const pages = result.data.allContentfulPage.nodes.map((node) => ({
       fields: {
         ...node,
         logo: node.logo
@@ -63,7 +63,9 @@ exports.createPages = ({ graphql, actions }) => {
               },
             }
           : undefined,
-        image: node.image ? node.image.fixed.src : undefined,
+        image: node.image
+          ? node.image.gatsbyImageData.images.fallback.src
+          : undefined,
         content: JSON.parse(node.content.raw),
       },
       sys: {
@@ -71,7 +73,7 @@ exports.createPages = ({ graphql, actions }) => {
       },
     }));
 
-    pages.forEach(page => {
+    pages.forEach((page) => {
       createPage({
         path: page.fields.path,
         component: projectTemplate,
@@ -79,17 +81,19 @@ exports.createPages = ({ graphql, actions }) => {
       });
     });
 
-    const embeds = result.data.allContentfulPageEmbed.nodes.map(node => ({
+    const embeds = result.data.allContentfulPageEmbed.nodes.map((node) => ({
       fields: {
         ...node,
-        image: node.image ? node.image.fixed.src : undefined,
+        image: node.image
+          ? node.image.gatsbyImageData.images.fallback.src
+          : undefined,
       },
       sys: {
         id: node.contentful_id,
       },
     }));
 
-    embeds.forEach(page => {
+    embeds.forEach((page) => {
       createPage({
         path: page.fields.path,
         component: embedTemplate,

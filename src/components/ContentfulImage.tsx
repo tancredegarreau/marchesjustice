@@ -1,19 +1,21 @@
 import * as React from "react";
-import { HTMLProps } from "react";
 import { Image } from "../technical/contentful/image";
 import { Entry } from "../technical/contentful/entry";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, GatsbyImageProps, getImage } from "gatsby-plugin-image";
 
-interface Props {
+interface Props extends Omit<GatsbyImageProps, "image" | "alt"> {
   image: Entry<Image>;
-  className?: HTMLProps<HTMLImageElement>["className"];
-  style?: HTMLProps<HTMLImageElement>["style"];
 }
 
 export const ContentfulImage = ({ image, ...props }: Props) => {
   if (!image.fields.gatsbyImageData) {
     return (
-      <img {...props} src={image.fields.file.url} alt={image.fields.title} />
+      <img
+        style={props.style}
+        className={props.className}
+        src={image.fields.file.url}
+        alt={image.fields.title}
+      />
     );
   }
 
@@ -21,6 +23,7 @@ export const ContentfulImage = ({ image, ...props }: Props) => {
     <GatsbyImage
       image={getImage(image.fields.gatsbyImageData)}
       alt={image.fields.title}
+      {...props}
     />
   );
 };

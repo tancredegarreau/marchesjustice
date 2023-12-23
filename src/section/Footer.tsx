@@ -19,7 +19,7 @@ const HTMLFooter = styled.footer`
 const Text = styled.p`
   font-family: ${KLIMA};
   font-size: 18px;
-  color: #8D8787;
+  color: #8d8787;
 `;
 
 export const Footer = () => {
@@ -27,9 +27,7 @@ export const Footer = () => {
 
   return (
     <HTMLFooter className="text-center sm:text-left">
-      <Text>
-        Ce site est une initiative citoyenne.
-      </Text>
+      <Text>Ce site est une initiative citoyenne.</Text>
       {/*
         <Link to="/legal">
         {documentToPlainTextString(texts[TextKey.LEGALS_CTA].document)}

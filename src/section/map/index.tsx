@@ -10,11 +10,10 @@ import { Share } from "./Share";
 import { TitleContainer } from "../../components/TitleContainer";
 import { useExternal } from "../../technical/external-provider/content";
 import { SafeMountMapComponent } from "./map-component";
-import { MarkerData } from "./map-component/MapComponent";
-import { EventForm } from './Form';
+import { EventForm } from "./Form";
 
 const Section = styled.section`
-margin-bottom: 124px;
+  margin-bottom: 124px;
 `;
 
 const Container = styled.div`
@@ -25,7 +24,7 @@ const Container = styled.div`
 `;
 
 const FormContainer = styled.div`
-  z-index: 9999;
+  z-index: 999;
   top: 0;
   left: 0;
   right: 0;
@@ -39,13 +38,23 @@ const FormContainer = styled.div`
 const CTAContainer = styled.div`
   pointer-events: none;
   position: absolute;
-  z-index: 9999;
+  z-index: 999;
   bottom: 50px;
   left: 0;
   right: 0;
   padding: 0 46px;
   display: flex;
+`;
 
+const ReportErrorContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 8px;
+`;
+
+const ReportError = styled.a`
+  font-size: 12px;
+  text-decoration: underline;
 `;
 
 interface APIAddressData {
@@ -59,7 +68,7 @@ interface APIAddressData {
       properties: {
         importance: number;
       };
-    }
+    },
   ];
 }
 
@@ -91,20 +100,7 @@ async function fetchPosition(postalCode: string): Promise<Position> {
 
 export const Map = () => {
   const { texts } = useContent();
-  const { events } = useExternal();
-  const markers = useMemo<MarkerData[]>(
-    () =>
-      events.map(event => ({
-        city: event.city,
-        date: event.date,
-        where: event.where,
-        when: event.when,
-        subject: event.subject,
-        href: event.URL,
-        position: event.position,
-      })),
-    [events]
-  );
+  const { events, filters, activeFilter, setActiveFilter } = useExternal();
   const mapRef = useRef<typeof LeafletMap>(null);
   const handlePostalCode = useCallback(async (postalCode: string) => {
     const currentMap = mapRef.current;
@@ -125,12 +121,18 @@ export const Map = () => {
     }
   }, []);
 
-  const countReplace = useMemo(
-    () => ({
-      "{{count}}": markers.length > 0 ? markers.length.toString() : "..",
-    }),
-    [markers]
-  );
+  const countReplace = useMemo(() => {
+    const all = filters[0]?.id;
+    if (!all || !events[all]) {
+      return {
+        "{{count}}": "..",
+      };
+    }
+
+    return {
+      "{{count}}": events[all].length.toString(),
+    };
+  }, [events]);
 
   return (
     <Section>
@@ -138,15 +140,21 @@ export const Map = () => {
         document={texts[TextKey.MAP_HEADER].document}
         replaces={countReplace}
       />
-        <EventForm
-          className="block md:hidden"
-          onSubmitPostalCode={handlePostalCode}
-        />
+      <EventForm
+        className="block md:hidden"
+        onSubmitPostalCode={handlePostalCode}
+      />
       <Container className="mt-0 md:mt-80">
-          <FormContainer className="hidden md:block">
-            <EventForm onSubmitPostalCode={handlePostalCode} />
-          </FormContainer>
-        <SafeMountMapComponent markers={markers} ref={mapRef} />
+        <FormContainer className="hidden md:block">
+          <EventForm onSubmitPostalCode={handlePostalCode} />
+        </FormContainer>
+        <SafeMountMapComponent
+          events={events[activeFilter] ?? []}
+          filters={filters}
+          activeFilter={activeFilter}
+          setActiveFilter={setActiveFilter}
+          ref={mapRef}
+        />
 
         <CTAContainer>
           <Button
@@ -163,6 +171,14 @@ export const Map = () => {
           </Button>
         </CTAContainer>
       </Container>
+      <ReportErrorContainer>
+        <ReportError
+          target="_blank"
+          href={texts[TextKey.MAP_REPORT_ERROR].link}
+        >
+          {documentToPlainTextString(texts[TextKey.MAP_REPORT_ERROR].document)}
+        </ReportError>
+      </ReportErrorContainer>
       <Share />
     </Section>
   );

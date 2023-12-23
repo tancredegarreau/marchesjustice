@@ -29,7 +29,12 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
       allContentfulLogo(limit: 1) {
         nodes {
           img {
-            gatsbyImageData(layout: FIXED, height: 560, resizingBehavior: PAD)
+            gatsbyImageData(
+              layout: FIXED
+              width: 700
+              height: 560
+              resizingBehavior: PAD
+            )
             file {
               contentType
               url
@@ -54,7 +59,9 @@ export const ContentProvider = ({ children }: PropsWithChildren<{}>) => {
   const rawData = {
     seo: {
       ...data.allContentfulSeo.nodes[0],
-      image: data.allContentfulSeo.nodes[0].image.gatsbyImageData.images.fallback.src,
+      image:
+        data.allContentfulSeo.nodes[0].image.gatsbyImageData.images.fallback
+          .src,
     },
     texts: data.allContentfulText.nodes.reduce(
       (acc, node) => ({

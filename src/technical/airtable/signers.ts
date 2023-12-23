@@ -1,4 +1,9 @@
-import { Airtable } from './Airtable';
+import { Airtable } from "./Airtable";
+import {
+  AIRTABLE_SIGNERS_BASE,
+  AIRTABLE_SIGNERS_TABLE,
+  AIRTABLE_SIGNERS_VIEW,
+} from "./config";
 
 export interface Signer {
   id: string;
@@ -8,8 +13,8 @@ export interface Signer {
 }
 
 function fetchSignersView() {
-  return Airtable.base("appNaCFXQSciFES5k")("tblGenCN7zfDAFN77").select({
-    view: "viw4poDIYsrZEqbQd",
+  return Airtable.base(AIRTABLE_SIGNERS_BASE)(AIRTABLE_SIGNERS_TABLE).select({
+    view: AIRTABLE_SIGNERS_VIEW,
   });
 }
 

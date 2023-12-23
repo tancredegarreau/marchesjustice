@@ -12,7 +12,16 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        allowList: ["SEND_IN_BLUE_FORM", "AIRTABLE_API_KEY"],
+        allowList: [
+          "SEND_IN_BLUE_FORM",
+          "AIRTABLE_API_KEY",
+          "AIRTABLE_EVENTS_BASE",
+          "AIRTABLE_EVENTS_TABLE",
+          "AIRTABLE_FILTERS_VIEW",
+          "AIRTABLE_SIGNERS_BASE",
+          "AIRTABLE_SIGNERS_TABLE",
+          "AIRTABLE_SIGNERS_VIEW",
+        ],
       },
     },
     {
@@ -29,7 +38,7 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_TOKEN,
       },
     },
-    'gatsby-plugin-image',
+    "gatsby-plugin-image",
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     "gatsby-plugin-typescript",

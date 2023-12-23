@@ -20,12 +20,12 @@ const Container = styled.div`
 `;
 
 const COLORS = {
-  [TextKey.MAP_SHARE_FACEBOOK]: '#1877F2',
-  [TextKey.MAP_SHARE_MESSENGER]: '#1877F2',
-  [TextKey.MAP_SHARE_WHATSAPP]: '#25D366',
-  [TextKey.MAP_SHARE_TWITTER]: '#1DA1F2',
-  [TextKey.MAP_SHARE_TELEGRAM]: '#0088CC',
-}
+  [TextKey.MAP_SHARE_FACEBOOK]: "#1877F2",
+  [TextKey.MAP_SHARE_MESSENGER]: "#1877F2",
+  [TextKey.MAP_SHARE_WHATSAPP]: "#25D366",
+  [TextKey.MAP_SHARE_TWITTER]: "#1DA1F2",
+  [TextKey.MAP_SHARE_TELEGRAM]: "#0088CC",
+};
 
 export const Share = () => {
   const { texts } = useContent();
@@ -51,7 +51,7 @@ export const Share = () => {
             shadow: true,
             small: true,
             rel: "noopener",
-            backgroundColor: COLORS[share]
+            backgroundColor: COLORS[share],
           } as any)}
           className="sm:w-80 w-full"
         >

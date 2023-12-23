@@ -27,7 +27,7 @@ export const TitleContainer = ({ document, replaces }: Props) => {
   const html = useMemo(() => {
     let htmlData = documentToHtmlString(document);
     if (replaces) {
-      Object.keys(replaces).forEach(key => {
+      Object.keys(replaces).forEach((key) => {
         htmlData = htmlData.replace(key, replaces[key]);
       });
     }

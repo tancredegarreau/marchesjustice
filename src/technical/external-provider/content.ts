@@ -1,15 +1,22 @@
 import { createContext, useContext } from "react";
 import { Signer } from "../airtable/signers";
-import { EventMap } from "../airtable/events";
+import { EventMap, MapFilter } from "../airtable/events";
 
 export interface ExternalData {
   signers: Signer[];
-  events: EventMap[];
+  filters: MapFilter[];
+  events: Record<string, EventMap[]>;
+  activeFilter?: MapFilter["id"];
+  setActiveFilter: (view: MapFilter["id"]) => Promise<void>;
 }
 
 export const initialState: ExternalData = {
   signers: [],
-  events: [],
+  filters: [],
+  events: {},
+  setActiveFilter: () => {
+    throw new Error("ExternalContext is not initialized");
+  },
 };
 
 export const ExternalContext = createContext<ExternalData>(initialState);
